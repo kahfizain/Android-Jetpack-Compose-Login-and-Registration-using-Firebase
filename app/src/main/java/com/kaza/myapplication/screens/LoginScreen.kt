@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kaza.myapplication.R
 import com.kaza.myapplication.componensts.ButtonComponent
 import com.kaza.myapplication.componensts.ClickableRegisterTextComponent
@@ -24,11 +25,13 @@ import com.kaza.myapplication.componensts.NormalTextComponent
 import com.kaza.myapplication.componensts.PasswordTextFieldComponent
 import com.kaza.myapplication.componensts.TextFieldComponent
 import com.kaza.myapplication.componensts.UnderLineNormalTextComponent
+import com.kaza.myapplication.data.LoginViewModel
+import com.kaza.myapplication.data.UIEvent
 import com.kaza.myapplication.navigation.PostOfficeAppRouter
 import com.kaza.myapplication.navigation.Screen
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -46,12 +49,19 @@ fun LoginScreen() {
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.email),
                 painterResource = painterResource(id = R.drawable.ic_email),
-                keyboardType = KeyboardType.Email
+                keyboardType = KeyboardType.Email,
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                }
             )
 
             PasswordTextFieldComponent(
                 labelValue = stringResource(id = R.string.password),
-                painterResource = painterResource(id = R.drawable.ic_lock)
+                painterResource = painterResource(id = R.drawable.ic_lock),
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.PasswordChanged(it))
+
+                }
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -62,7 +72,10 @@ fun LoginScreen() {
 
             Spacer(modifier = Modifier.height(200.dp))
 
-            ButtonComponent(value = stringResource(id = R.string.login))
+            ButtonComponent(value = stringResource(id = R.string.login),
+                onButtonClicked = {
+                loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
+            })
 
             Spacer(modifier = Modifier.height(10.dp))
 
