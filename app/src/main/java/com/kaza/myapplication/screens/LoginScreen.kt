@@ -46,7 +46,10 @@ fun LoginScreen() {
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.email),
                 painterResource = painterResource(id = R.drawable.ic_email),
-                keyboardType = KeyboardType.Email
+                keyboardType = KeyboardType.Email,
+                onTextSelected = {
+
+                }
             )
 
             PasswordTextFieldComponent(

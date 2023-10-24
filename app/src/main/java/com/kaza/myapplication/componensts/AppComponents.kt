@@ -13,6 +13,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
@@ -35,6 +37,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -94,7 +97,8 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardType: KeyboardType) {
+fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardType: KeyboardType,
+                       onTextSelected: (String) -> Unit) {
     var textValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -118,6 +122,7 @@ fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardTyp
         ),
         onValueChange = {
             textValue = it
+            onTextSelected(it.text)
         },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "")
@@ -127,7 +132,8 @@ fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardTyp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
+fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter,
+                               onTextSelected: (String) -> Unit) {
     var passwordValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -154,15 +160,19 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
         ),
         onValueChange = {
             passwordValue = it
+            onTextSelected(it.text)
         },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "")
         },
         trailingIcon = {
             val iconImage = if (passwordVisible) {
-                Icons.Filled.AccountBox
+                //painterResource(id = R.drawable.ic_show_password)
+                Icons.Filled.Visibility
+
             } else {
-                Icons.Filled.KeyboardArrowDown
+                Icons.Filled.VisibilityOff
+                //painterResource(id = R.drawable.ic_hide_password)
             }
 
             var description = if (passwordVisible) {
@@ -172,7 +182,10 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
             }
 
             IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                //Icon(painter = iconImage, contentDescription = description)
                 Icon(imageVector = iconImage, contentDescription = description)
+
+
             }
         },
         visualTransformation = if (passwordVisible) VisualTransformation.None else
@@ -192,9 +205,17 @@ fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
         val checkedState = remember {
             mutableStateOf(false)
         }
-        Checkbox(checked = checkedState.value, onCheckedChange = {
-            checkedState.value != checkedState.value
-        })
+     /*   Checkbox(checked = checkedState.value, onCheckedChange = {
+            checkedState.value != it
+        })*/
+
+        Checkbox(
+            checked = checkedState.value,
+            onCheckedChange = { checked ->
+                checkedState.value = checked
+                onTextSelected
+            }
+        )
 
         ClickableTextComponent(value, onTextSelected)
     }
