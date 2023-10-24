@@ -3,14 +3,16 @@ package com.kaza.myapplication.data
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.kaza.myapplication.data.rules.Validator
 
 class LoginViewModel : ViewModel() {
 
     var registrationUIState = mutableStateOf(RegistrationUIState())
 
-    private val  TAG = LoginViewModel::class.simpleName
+    private val TAG = LoginViewModel::class.simpleName
 
     fun onEvent(event: UIEvent) {
+
         when (event) {
             is UIEvent.FirstNameChanged -> {
                 registrationUIState.value = registrationUIState.value.copy(
@@ -35,15 +37,39 @@ class LoginViewModel : ViewModel() {
                     password = event.password
                 )
             }
-            is UIEvent.RegisterButtonClicked->{
+
+            is UIEvent.RegisterButtonClicked -> {
                 signUp()
             }
         }
+        validateDateWithRules()
     }
 
-    private fun signUp(){
+    private fun signUp() {
         Log.d(TAG, registrationUIState.value.toString())
 
-       // registrationUIState.value.toString();
+
+    }
+
+    private fun validateDateWithRules() {
+        val fNameResult = Validator.validateFirsName(
+            fName = registrationUIState.value.firstName
+        )
+        val lNameResult = Validator.validateLastName(
+            lName = registrationUIState.value.lastName
+        )
+        val emailResult = Validator.validateEmail(
+            email =  registrationUIState.value.email
+        )
+        val  passwordResult = Validator.validatePassword(
+            password = registrationUIState.value.password
+        )
+
+        registrationUIState.value = registrationUIState.value.copy(
+            firstNameError = fNameResult.status,
+            lastNameError =  lNameResult.status,
+            emailError =  emailResult.status,
+            passwordError =  passwordResult.status
+        )
     }
 }

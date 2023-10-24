@@ -52,7 +52,9 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 keyboardType = KeyboardType.Email,
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.EmailChanged(it))
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.emailError
+
             )
 
             PasswordTextFieldComponent(
@@ -61,21 +63,25 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.PasswordChanged(it))
 
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.passwordError
+
             )
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            UnderLineNormalTextComponent(value = stringResource(id = R.string.forget_password), onTextSelected = {
+            UnderLineNormalTextComponent(
+                value = stringResource(id = R.string.forget_password),
+                onTextSelected = {
 
-            })
+                })
 
             Spacer(modifier = Modifier.height(200.dp))
 
             ButtonComponent(value = stringResource(id = R.string.login),
                 onButtonClicked = {
-                loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
-            })
+                    loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
+                })
 
             Spacer(modifier = Modifier.height(10.dp))
 

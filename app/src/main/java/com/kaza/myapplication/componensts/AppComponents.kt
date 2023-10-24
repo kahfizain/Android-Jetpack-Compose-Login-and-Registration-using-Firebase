@@ -98,7 +98,8 @@ fun HeadingTextComponent(value: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardType: KeyboardType,
-                       onTextSelected: (String) -> Unit) {
+                       onTextSelected: (String) -> Unit,
+                       errorStatus :Boolean = false) {
     var textValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -126,14 +127,16 @@ fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardTyp
         },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "")
-        }
+        },
+        isError =  !errorStatus
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter,
-                               onTextSelected: (String) -> Unit) {
+                               onTextSelected: (String) -> Unit,
+                               errorStatus :Boolean = false) {
     var passwordValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -188,8 +191,10 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter,
 
             }
         },
+
         visualTransformation = if (passwordVisible) VisualTransformation.None else
-            PasswordVisualTransformation()
+            PasswordVisualTransformation(),
+        isError = !errorStatus
 
     )
 }
