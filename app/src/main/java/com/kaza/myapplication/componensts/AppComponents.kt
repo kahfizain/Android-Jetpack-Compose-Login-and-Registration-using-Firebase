@@ -394,7 +394,6 @@ fun ClickableRegisterTextComponent(value: String, onTextSelected: (String) -> Un
         })
 }
 
-
 @Composable
 fun UnderLineNormalTextComponent(value: String,onTextSelected: (String) -> Unit) {
     val annotatedString = buildAnnotatedString {
