@@ -1,4 +1,4 @@
-package com.kaza.myapplication.screens
+package com.kaza.myapplication.fiture.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -25,13 +25,13 @@ import com.kaza.myapplication.componensts.NormalTextComponent
 import com.kaza.myapplication.componensts.PasswordTextFieldComponent
 import com.kaza.myapplication.componensts.TextFieldComponent
 import com.kaza.myapplication.componensts.UnderLineNormalTextComponent
-import com.kaza.myapplication.data.LoginViewModel
-import com.kaza.myapplication.data.UIEvent
+import com.kaza.myapplication.fiture.register.data.RegisterViewModel
+import com.kaza.myapplication.fiture.register.data.RegisterUIEvent
 import com.kaza.myapplication.navigation.PostOfficeAppRouter
 import com.kaza.myapplication.navigation.Screen
 
 @Composable
-fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+fun LoginScreen(registerViewModel: RegisterViewModel = viewModel()) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -51,9 +51,9 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 painterResource = painterResource(id = R.drawable.ic_email),
                 keyboardType = KeyboardType.Email,
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.EmailChanged(it))
                 },
-                errorStatus = loginViewModel.registrationUIState.value.emailError
+                errorStatus = registerViewModel.registerUIState.value.emailError
 
             )
 
@@ -61,10 +61,10 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 labelValue = stringResource(id = R.string.password),
                 painterResource = painterResource(id = R.drawable.ic_lock),
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.PasswordChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.PasswordChanged(it))
 
                 },
-                errorStatus = loginViewModel.registrationUIState.value.passwordError
+                errorStatus = registerViewModel.registerUIState.value.passwordError
 
             )
 
@@ -80,7 +80,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 
             ButtonComponent(value = stringResource(id = R.string.login),
                 onButtonClicked = {
-                    loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
+                    registerViewModel.onEvent(RegisterUIEvent.RegisterButtonClicked)
                 })
 
             Spacer(modifier = Modifier.height(10.dp))

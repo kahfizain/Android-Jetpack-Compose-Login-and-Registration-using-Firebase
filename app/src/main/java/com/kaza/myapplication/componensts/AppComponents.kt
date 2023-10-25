@@ -97,9 +97,11 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardType: KeyboardType,
-                       onTextSelected: (String) -> Unit,
-                       errorStatus :Boolean = false) {
+fun TextFieldComponent(
+    labelValue: String, painterResource: Painter, keyboardType: KeyboardType,
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean = false
+) {
     var textValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -128,15 +130,17 @@ fun TextFieldComponent(labelValue: String, painterResource: Painter, keyboardTyp
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "")
         },
-        isError =  !errorStatus
+        isError = !errorStatus
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter,
-                               onTextSelected: (String) -> Unit,
-                               errorStatus :Boolean = false) {
+fun PasswordTextFieldComponent(
+    labelValue: String, painterResource: Painter,
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean = false
+) {
     var passwordValue by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -194,9 +198,12 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter,
 
         visualTransformation = if (passwordVisible) VisualTransformation.None else
             PasswordVisualTransformation(),
-        isError = !errorStatus
+        isError = !errorStatus,
 
     )
+    if (!errorStatus) {
+        Text(text = "Please enter valid text", color = Color.Red)
+    }
 }
 
 @Composable
@@ -210,9 +217,9 @@ fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
         val checkedState = remember {
             mutableStateOf(false)
         }
-     /*   Checkbox(checked = checkedState.value, onCheckedChange = {
-            checkedState.value != it
-        })*/
+        /*   Checkbox(checked = checkedState.value, onCheckedChange = {
+               checkedState.value != it
+           })*/
 
         Checkbox(
             checked = checkedState.value,
@@ -259,16 +266,18 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value: String, onButtonClicked : ()-> Unit) {
+fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnabled: Boolean = false) {
     Button(
-        onClick = {
-                  onButtonClicked.invoke()
-        },
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(48.dp),
+        onClick = {
+            onButtonClicked.invoke()
+        },
         contentPadding = PaddingValues(),
-        colors = ButtonDefaults.buttonColors(Color.Transparent)
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        shape = RoundedCornerShape(50.dp),
+        enabled = isEnabled
     ) {
         Box(
             modifier = Modifier
@@ -395,10 +404,12 @@ fun ClickableRegisterTextComponent(value: String, onTextSelected: (String) -> Un
 }
 
 @Composable
-fun UnderLineNormalTextComponent(value: String,onTextSelected: (String) -> Unit) {
+fun UnderLineNormalTextComponent(value: String, onTextSelected: (String) -> Unit) {
     val annotatedString = buildAnnotatedString {
-        withStyle(style =
-        SpanStyle(color = Primary)) {
+        withStyle(
+            style =
+            SpanStyle(color = Primary)
+        ) {
             pushStringAnnotation(tag = value, annotation = value)
             append(value)
         }

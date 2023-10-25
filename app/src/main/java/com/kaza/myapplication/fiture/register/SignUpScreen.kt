@@ -1,4 +1,4 @@
-package com.kaza.myapplication.screens
+package com.kaza.myapplication.fiture.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kaza.myapplication.R
 import com.kaza.myapplication.componensts.ButtonComponent
@@ -26,14 +25,14 @@ import com.kaza.myapplication.componensts.HeadingTextComponent
 import com.kaza.myapplication.componensts.NormalTextComponent
 import com.kaza.myapplication.componensts.PasswordTextFieldComponent
 import com.kaza.myapplication.componensts.TextFieldComponent
-import com.kaza.myapplication.data.LoginViewModel
-import com.kaza.myapplication.data.UIEvent
+import com.kaza.myapplication.fiture.register.data.RegisterViewModel
+import com.kaza.myapplication.fiture.register.data.RegisterUIEvent
 import com.kaza.myapplication.navigation.PostOfficeAppRouter
 import com.kaza.myapplication.navigation.Screen
 import com.kaza.myapplication.navigation.SystemBackButtonHandler
 
 @Composable
-fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
+fun SignUpScreen(registerViewModel: RegisterViewModel = viewModel()) {
 
     Surface(
         modifier = Modifier
@@ -54,9 +53,9 @@ fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
                 painterResource = painterResource(id = R.drawable.ic_user),
                 keyboardType = KeyboardType.Text,
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.FirstNameChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.FirstNameChanged(it))
                 },
-                errorStatus = loginViewModel.registrationUIState.value.firstNameError
+                errorStatus = registerViewModel.registerUIState.value.firstNameError
             )
 
             TextFieldComponent(
@@ -64,10 +63,10 @@ fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
                 painterResource = painterResource(id = R.drawable.ic_user),
                 keyboardType = KeyboardType.Text,
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.LastNameChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.LastNameChanged(it))
 
                 },
-                errorStatus = loginViewModel.registrationUIState.value.lastNameError
+                errorStatus = registerViewModel.registerUIState.value.lastNameError
             )
 
             TextFieldComponent(
@@ -75,10 +74,10 @@ fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
                 painterResource = painterResource(id = R.drawable.ic_email),
                 keyboardType = KeyboardType.Email,
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.EmailChanged(it))
 
                 },
-                errorStatus = loginViewModel.registrationUIState.value.emailError
+                errorStatus = registerViewModel.registerUIState.value.emailError
 
             )
 
@@ -86,9 +85,9 @@ fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
                 labelValue = stringResource(id = R.string.password),
                 painterResource = painterResource(id = R.drawable.ic_lock),
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.PasswordChanged(it))
+                    registerViewModel.onEvent(RegisterUIEvent.PasswordChanged(it))
                 },
-                errorStatus = loginViewModel.registrationUIState.value.passwordError
+                errorStatus = registerViewModel.registerUIState.value.passwordError
 
             )
 
@@ -99,9 +98,11 @@ fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            ButtonComponent(value = stringResource(id = R.string.register), onButtonClicked = {
-                loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
-            })
+            ButtonComponent(
+                value = stringResource(id = R.string.register), onButtonClicked = {
+                    registerViewModel.onEvent(RegisterUIEvent.RegisterButtonClicked)
+                }, isEnabled = registerViewModel.allValidationPassed.value
+            )
 
             Spacer(modifier = Modifier.height(20.dp))
 

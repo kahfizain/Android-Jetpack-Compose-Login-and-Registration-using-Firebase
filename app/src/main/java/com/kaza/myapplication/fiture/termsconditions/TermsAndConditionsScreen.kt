@@ -1,4 +1,4 @@
-package com.kaza.myapplication.screens
+package com.kaza.myapplication.fiture.termsconditions
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize

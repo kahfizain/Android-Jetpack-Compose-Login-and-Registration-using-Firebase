@@ -1,6 +1,6 @@
-package com.kaza.myapplication.data
+package com.kaza.myapplication.fiture.register.data
 
-data class RegistrationUIState(
+data class RegisterUIState(
     var firstName: String = "",
     var lastName: String = "",
     var email: String = "",
