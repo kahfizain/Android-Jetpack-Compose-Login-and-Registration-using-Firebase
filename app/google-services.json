@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "905234122213",
+    "firebase_url": "https://realtimedatabase-71c9b.firebaseio.com",
+    "project_id": "realtimedatabase-71c9b",
+    "storage_bucket": "realtimedatabase-71c9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905234122213:android:4b15abeb47a431ea8ddb0c",
+        "android_client_info": {
+          "package_name": "com.kaza.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGN0mOHjVUtgCbdItteHcEARH-gzHRbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905234122213:android:c0664005632b03d2",
+        "android_client_info": {
+          "package_name": "com.veloque"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905234122213-ulcqsnllq6sb4p5v6fkghjqvke82h68n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veloque",
+            "certificate_hash": "f7e4a5fd66670ee5325c4e3aa57fe52c3a1fda68"
+          }
+        },
+        {
+          "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGN0mOHjVUtgCbdItteHcEARH-gzHRbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905234122213:android:ec3d762f174416ed",
+        "android_client_info": {
+          "package_name": "com.veloque_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905234122213-mo3klcg6nosqjqtkq3caa1aihe12tfdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veloque_customer",
+            "certificate_hash": "f7e4a5fd66670ee5325c4e3aa57fe52c3a1fda68"
+          }
+        },
+        {
+          "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGN0mOHjVUtgCbdItteHcEARH-gzHRbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905234122213-9g6qoa1p02u8535kasucbbigjcfqghoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
