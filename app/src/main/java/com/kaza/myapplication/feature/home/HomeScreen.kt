@@ -15,9 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kaza.myapplication.R
+import com.kaza.myapplication.componensts.ButtonComponent
+import com.kaza.myapplication.componensts.HeadingTextComponent
 import com.kaza.myapplication.feature.home.data.HomeViewModel
-import com.kaza.myapplication.utils.componensts.ButtonComponent
-import com.kaza.myapplication.utils.componensts.HeadingTextComponent
 
 
 @Composable
