@@ -15,15 +15,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kaza.myapplication.R
-import com.kaza.myapplication.componensts.ButtonComponent
-import com.kaza.myapplication.componensts.HeadingTextComponent
 import com.kaza.myapplication.feature.home.data.HomeViewModel
+import com.kaza.myapplication.ui.theme.componensts.ButtonComponent
+import com.kaza.myapplication.ui.theme.componensts.HeadingTextComponent
 
 
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel = viewModel()) {
-    val context = LocalContext.current
 
+    val context = LocalContext.current
+    homeViewModel.getUserData()
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -35,7 +36,8 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel()) {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-            HeadingTextComponent(value = stringResource(id = R.string.home))
+            HeadingTextComponent(value = "Battery Level")
+            HeadingTextComponent(value = "Email: ${homeViewModel.emailId.value}")
 
             ButtonComponent(value = stringResource(id = R.string.logout),
                 onButtonClicked = {
@@ -48,13 +50,6 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel()) {
 
     }
 
-    /*val homeViewModel: HomeViewModel = viewModel()
-    val batteryPercentage by batteryViewModel.batteryPercentage
-    val batteryPercentage by homeViewModel.batteryPercentage
-
-    DisposableEffect(Unit) {
-        homeViewModel.updateBatteryPercentage(context)
-    }*/
 }
 
 

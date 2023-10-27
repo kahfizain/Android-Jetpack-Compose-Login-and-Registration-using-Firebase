@@ -1,4 +1,4 @@
-package com.kaza.myapplication.componensts
+package com.kaza.myapplication.ui.theme.componensts
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
