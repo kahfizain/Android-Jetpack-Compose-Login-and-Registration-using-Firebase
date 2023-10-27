@@ -1,0 +1,65 @@
+package com.kaza.myapplication.feature.home
+
+import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kaza.myapplication.R
+import com.kaza.myapplication.feature.home.data.HomeViewModel
+import com.kaza.myapplication.utils.componensts.ButtonComponent
+import com.kaza.myapplication.utils.componensts.HeadingTextComponent
+
+
+@Composable
+fun HomeScreen(homeViewModel: HomeViewModel = viewModel()) {
+    val context = LocalContext.current
+
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(28.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+        ) {
+            HeadingTextComponent(value = stringResource(id = R.string.home))
+
+            ButtonComponent(value = stringResource(id = R.string.logout),
+                onButtonClicked = {
+                    homeViewModel.logOut()
+                    if(homeViewModel.errorMsg!=""){
+                        Toast.makeText( context, homeViewModel.errorMsg, Toast.LENGTH_SHORT).show()
+                    }
+            },isEnabled = true)
+        }
+
+    }
+
+    /*val homeViewModel: HomeViewModel = viewModel()
+    val batteryPercentage by batteryViewModel.batteryPercentage
+    val batteryPercentage by homeViewModel.batteryPercentage
+
+    DisposableEffect(Unit) {
+        homeViewModel.updateBatteryPercentage(context)
+    }*/
+}
+
+
+@Preview
+@Composable
+fun DefaultPreviewOfHomeScreen() {
+    HomeScreen()
+}

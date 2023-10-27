@@ -15,6 +15,9 @@
     <string name="welcome_back">Welcome Back</string>
     <string name="dont_have_account">Dont have an account?</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
+
     <string name="forget_password">Forget your Password</string>
+    <string name="home">Home</string>
 
 </resources>

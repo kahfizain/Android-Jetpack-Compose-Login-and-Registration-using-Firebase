@@ -6,11 +6,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.kaza.myapplication.navigation.PostOfficeAppRouter
-import com.kaza.myapplication.navigation.Screen
-import com.kaza.myapplication.fiture.login.LoginScreen
-import com.kaza.myapplication.fiture.register.SignUpScreen
-import com.kaza.myapplication.fiture.termsconditions.TermsAndConditionsScreen
+import com.kaza.myapplication.feature.home.HomeScreen
+import com.kaza.myapplication.feature.login.LoginScreen
+import com.kaza.myapplication.feature.signup.SignUpScreen
+import com.kaza.myapplication.feature.termsconditions.TermsAndConditionsScreen
+import com.kaza.myapplication.utils.navigation.PostOfficeAppRouter
+import com.kaza.myapplication.utils.navigation.Screen
 
 @Composable
 fun PostOfficeApp() {
@@ -29,6 +30,9 @@ fun PostOfficeApp() {
                 }
                 is Screen.TermsAndConditionsScreen ->{
                     TermsAndConditionsScreen()
+                }
+                is Screen.HomeScreen->{
+                    HomeScreen()
                 }
             }
         }

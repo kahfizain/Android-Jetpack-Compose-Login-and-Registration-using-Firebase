@@ -1,4 +1,4 @@
-package com.kaza.myapplication.navigation
+package com.kaza.myapplication.utils.navigation
 
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
@@ -25,7 +25,7 @@ internal fun ComposableHandler(
     onBackPressed: () -> Unit
 ) {
     val dispatcher = (localBackPressedDispatcher.current ?: return).onBackPressedDispatcher
-    var handler = remember { ComposableBackNavigationHandler(enabled) }
+    val handler = remember { ComposableBackNavigationHandler(enabled) }
 
     DisposableEffect(dispatcher) {
         dispatcher.addCallback(handler)

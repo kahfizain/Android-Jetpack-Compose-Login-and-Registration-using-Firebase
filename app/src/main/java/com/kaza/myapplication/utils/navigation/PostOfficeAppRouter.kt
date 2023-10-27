@@ -1,4 +1,4 @@
-package com.kaza.myapplication.navigation
+package com.kaza.myapplication.utils.navigation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -8,6 +8,7 @@ sealed class Screen(){
     object LoginScreen : Screen()
     object SignUpScreen : Screen()
     object TermsAndConditionsScreen : Screen()
+    object HomeScreen : Screen()
 
 }
 

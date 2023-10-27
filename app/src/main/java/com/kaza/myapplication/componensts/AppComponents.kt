@@ -11,8 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -37,7 +35,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -100,7 +97,8 @@ fun HeadingTextComponent(value: String) {
 fun TextFieldComponent(
     labelValue: String, painterResource: Painter, keyboardType: KeyboardType,
     onTextSelected: (String) -> Unit,
-    errorStatus: Boolean = false
+    errorStatus: Boolean = false,
+    errorMsg : String
 ) {
     var textValue by remember {
         mutableStateOf(TextFieldValue(""))
@@ -132,6 +130,10 @@ fun TextFieldComponent(
         },
         isError = !errorStatus
     )
+
+    if (errorMsg != "") {
+        Text(text = errorMsg, color = Color.Red)
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -139,7 +141,8 @@ fun TextFieldComponent(
 fun PasswordTextFieldComponent(
     labelValue: String, painterResource: Painter,
     onTextSelected: (String) -> Unit,
-    errorStatus: Boolean = false
+    errorStatus: Boolean = false,
+    errorMsg : String
 ) {
     var passwordValue by remember {
         mutableStateOf(TextFieldValue(""))
@@ -201,13 +204,15 @@ fun PasswordTextFieldComponent(
         isError = !errorStatus,
 
     )
-    if (!errorStatus) {
-        Text(text = "Please enter valid text", color = Color.Red)
+    if (errorMsg != "") {
+        Text(text = errorMsg, color = Color.Red)
     }
 }
 
 @Composable
-fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
+fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit,
+                      onCheckedChange:(Boolean)->Unit,
+                      errorMsg: String ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -217,19 +222,22 @@ fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
         val checkedState = remember {
             mutableStateOf(false)
         }
-        /*   Checkbox(checked = checkedState.value, onCheckedChange = {
-               checkedState.value != it
-           })*/
 
         Checkbox(
             checked = checkedState.value,
             onCheckedChange = { checked ->
-                checkedState.value = checked
+                checkedState.value = !checkedState.value
+                onCheckedChange.invoke(checked)
                 onTextSelected
             }
         )
 
         ClickableTextComponent(value, onTextSelected)
+
+    }
+    if (errorMsg!=""){
+        Text(text = errorMsg, color = Color.Red)
+
     }
 }
 

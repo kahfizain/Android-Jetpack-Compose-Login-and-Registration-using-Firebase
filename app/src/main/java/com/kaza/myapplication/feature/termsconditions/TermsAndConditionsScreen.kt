@@ -1,4 +1,4 @@
-package com.kaza.myapplication.fiture.termsconditions
+package com.kaza.myapplication.feature.termsconditions
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,9 +10,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kaza.myapplication.componensts.HeadingTextComponent
-import com.kaza.myapplication.navigation.PostOfficeAppRouter
-import com.kaza.myapplication.navigation.Screen
-import com.kaza.myapplication.navigation.SystemBackButtonHandler
+import com.kaza.myapplication.utils.navigation.PostOfficeAppRouter
+import com.kaza.myapplication.utils.navigation.Screen
+import com.kaza.myapplication.utils.navigation.SystemBackButtonHandler
 
 @Composable
 fun TermsAndConditionsScreen() {
