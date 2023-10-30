@@ -1,8 +1,6 @@
 package com.kaza.myapplication.feature.home.data
 
-import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -48,8 +46,8 @@ class HomeViewModel() : ViewModel() {
         }
     }
 
-    fun getBatteryLevelLiveData(context: Context): LiveData<Int> {
+    /*fun getBatteryLevelLiveData(context: Context): LiveData<Int> {
         return BatteryStatusLiveData(context)
 
-    }
+    }*/
 }
