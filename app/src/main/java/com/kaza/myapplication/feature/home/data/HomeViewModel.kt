@@ -1,9 +1,12 @@
 package com.kaza.myapplication.feature.home.data
 
+import android.content.Context
+import android.os.BatteryManager
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.kaza.myapplication.utils.navigation.PostOfficeAppRouter
 import com.kaza.myapplication.utils.navigation.Screen
 
@@ -46,8 +49,17 @@ class HomeViewModel() : ViewModel() {
         }
     }
 
-    /*fun getBatteryLevelLiveData(context: Context): LiveData<Int> {
-        return BatteryStatusLiveData(context)
+   fun getBatteryManager(context: Context) : Int{
+       val batteryManager = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
 
-    }*/
+
+       val batLevel: Int = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+
+       // Get the battery percentage and store it in a INT variable
+       val database = FirebaseDatabase.getInstance()
+       val reference = database.getReference("batLevel")
+
+       reference.setValue(batLevel)
+       return  batLevel
+   }
 }

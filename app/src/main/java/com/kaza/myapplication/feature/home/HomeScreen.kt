@@ -36,7 +36,7 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel()) {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-           // HeadingTextComponent(value = "Battery Level")
+            HeadingTextComponent(value = "Battery Level : ${homeViewModel.getBatteryManager(context)} %")
             HeadingTextComponent(value = "Email: ${homeViewModel.emailId.value}")
 
             ButtonComponent(value = stringResource(id = R.string.logout),
